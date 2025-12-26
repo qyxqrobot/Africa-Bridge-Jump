@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>正在跳转...</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: -apple-system, sans-serif;
+      background: #f5f5f5;
+    }
+    .loading {
+      text-align: center;
+      color: #666;
+    }
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid #e0e0e0;
+      border-top-color: #3498db;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 20px;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="loading">
+    <div class="spinner"></div>
+    <p>loading...</p>
+  </div>
+
+  <script>
+    // ===== 修改这里的地址 =====
+    const CHINA_URL = 'https://docs.qq.com/doc/DVmZEY2RLS2RCelRs';
+    const GLOBAL_URL = 'https://www.notion.so/notion-2d2fff08fd1180d9aa87c70ca48f6fe5?source=copy_link';
+    // =========================
+
+    fetch('https://ipapi.co/country/')
+      .then(res => res.text())
+      .then(country => {
+        if (country.trim() === 'CN') {
+          window.location.href = CHINA_URL;
+        } else {
+          window.location.href = GLOBAL_URL;
+        }
+      })
+      .catch(() => {
+        window.location.href = CHINA_URL;
+      });
+  </script>
+</body>
+</html>
